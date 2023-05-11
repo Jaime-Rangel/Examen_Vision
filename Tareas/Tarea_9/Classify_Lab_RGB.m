@@ -99,8 +99,8 @@ for count = 1:nColors
   hold on;
 end
 
-title('Scatterplot of the segmented pixels in ''a*b*'' space');
-xlabel('''a*'' values');
-ylabel('''b*'' values');
+title('Scatterplot of the segmented pixels in ''r*g*'' space');
+xlabel('''r*'' values');
+ylabel('''g*'' values');
 
 %----------------------------------------------------------
