@@ -92,15 +92,15 @@ imshow(segmented_images(:,:,:,6)), title('yellow objects');
 purple = [119/255 73/255 152/255];
 plot_labels = {'k', 'r', 'g', purple, 'm', 'y'};
 
-%figure
-% for count = 1:nColors
-%   plot(a(label==count-1),b(label==count-1),'.','MarkerEdgeColor', ...
-%        plot_labels{count}, 'MarkerFaceColor', plot_labels{count});
-%   hold on;
-% end
+figure
+for count = 1:nColors
+  plot(a(label==count-1),b(label==count-1),'.','MarkerEdgeColor', ...
+       plot_labels{count}, 'MarkerFaceColor', plot_labels{count});
+  hold on;
+end
 
-%title('Scatterplot of the segmented pixels in ''a*b*'' space');
-%xlabel('''a*'' values');
-%ylabel('''b*'' values');
+title('Scatterplot of the segmented pixels in ''a*b*'' space');
+xlabel('''a*'' values');
+ylabel('''b*'' values');
 
 %----------------------------------------------------------
