@@ -1,4 +1,5 @@
-
+clear all;
+close all;
 %----------------------------------------------------------
 fabric = imread('fabric.png');
 %figure(1), imshow(fabric), title('fabric');
@@ -27,8 +28,8 @@ space_g = fabric(:,:,2);
 space_b = fabric(:,:,3);
 
 %----------------------------------------------------------
-a = lab_fabric(:,:,2);
-b = lab_fabric(:,:,3);
+% a = lab_fabric(:,:,2);
+% b = lab_fabric(:,:,3);
 color_markers = repmat(0, [nColors, 2]);
 
 for count = 1:nColors
@@ -94,13 +95,14 @@ plot_labels = {'k', 'r', 'g', purple, 'm', 'y'};
 
 figure
 for count = 1:nColors
-  plot(a(label==count-1),b(label==count-1),'.','MarkerEdgeColor', ...
+  plot3(space_r(label==count-1),space_g(label==count-1),space_b(label==count-1),'.','MarkerEdgeColor', ...
        plot_labels{count}, 'MarkerFaceColor', plot_labels{count});
   hold on;
 end
 
-title('Scatterplot of the segmented pixels in ''r*g*'' space');
+title('Scatterplot of the segmented pixels in ''r*g*b'' space');
 xlabel('''r*'' values');
 ylabel('''g*'' values');
+zlabel('''b*'' values');
 
 %----------------------------------------------------------

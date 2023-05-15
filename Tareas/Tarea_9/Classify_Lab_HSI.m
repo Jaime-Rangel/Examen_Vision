@@ -1,4 +1,5 @@
-
+clear all;
+close all;
 %----------------------------------------------------------
 fabric = imread('fabric.png');
 %figure(1), imshow(fabric), title('fabric');
@@ -102,8 +103,7 @@ for count = 1:nColors
   hold on;
 end
 
-title('Scatterplot of the segmented pixels in ''h*s*'' space');
-xlabel('''h*'' values');
-ylabel('''s*'' values');
-
+title('Scatterplot of the segmented pixels in ''a*b'' space');
+xlabel('''a*'' values');
+ylabel('''b*'' values');
 %----------------------------------------------------------
