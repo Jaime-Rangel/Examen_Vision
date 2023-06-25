@@ -1,0 +1,50 @@
+clear all
+close all
+
+I = imread('coins.png');
+
+% Rotate the image.
+rotI = imrotate(I, 33, 'crop');
+
+% Create a binary image.
+BW = edge(rotI, 'canny');
+
+% Define the radius range for circles you want to detect.
+radiusRange = [20, 40]; % Adjust the range as needed.
+
+% Define the step size for the radius.
+radiusStep = 1; % Adjust the step size as needed.
+
+% Initialize the accumulator array.
+accumulator = zeros(size(BW));
+
+% Define the threshold for circle detection.
+threshold = 0.8 * max(accumulator(:)); % Adjust the threshold as needed.
+
+% Perform the Hough Circle Transform.
+[rows, cols] = size(BW);
+for r = radiusRange(1):radiusStep:radiusRange(2)
+    for x = 1:cols
+        for y = 1:rows
+            if BW(y, x) == 1
+               for theta = 1:360
+                    a = round(x - r * cos(theta));
+                    b = round(y - r * sin(theta));
+                    if a >= 1 && a <= cols && b >= 1 && b <= rows
+                        accumulator(b, a,  r - radiusRange(1) + 1) = accumulator(b, a , r -) + 1;
+                    end
+                end
+            end
+        end
+    end
+end
+
+% Find circle centers with high accumulator values.
+[yC, xC] = find(accumulator >= threshold);
+
+% Display the detected circles.
+figure, imshow(rotI), hold on
+for i = 1:length(xC)
+    plot(xC(i), yC(i), 's', 'color', 'white');
+    viscircles([xC(i), yC(i)], radiusRange(1):radiusStep:radiusRange(2), 'EdgeColor', 'green');
+end
